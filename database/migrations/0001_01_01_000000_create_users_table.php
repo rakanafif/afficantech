@@ -4,11 +4,11 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration
+class CreateUsersTable extends Migration
 {
     public function up(): void
     {
-        // 1. جدول المستخدمين (قراء، بائعين، مدراء)
+        // 1. جدول المستخدمين
         Schema::create('users', function (Blueprint $table) {
             $table->id();
             $table->string('name');
@@ -37,7 +37,7 @@ return new class extends Migration
             $table->timestamps();
         });
 
-        // 3. جدول المعاملات والمبيعات
+        // 3. جدول المعاملات
         Schema::create('transactions', function (Blueprint $table) {
             $table->id();
             $table->foreignId('book_id')->constrained();
@@ -56,4 +56,4 @@ return new class extends Migration
         Schema::dropIfExists('books');
         Schema::dropIfExists('users');
     }
-};
+}
