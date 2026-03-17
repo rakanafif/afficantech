@@ -5,19 +5,19 @@ RUN a2enmod rewrite
 
 COPY . /var/www/html
 
-# إعداد المسارات
+# إعداد المسارات الأساسية
 ENV APACHE_DOCUMENT_ROOT /var/www/html/public
 RUN sed -ri -e 's!/var/www/html!${APACHE_DOCUMENT_ROOT}!g' /etc/apache2/sites-available/*.conf
 RUN sed -ri -e 's!/var/www/!${APACHE_DOCUMENT_ROOT}!g' /etc/apache2/apache2.conf /etc/apache2/conf-available/*.conf
 
-# ضبط الصلاحيات
-RUN chown -R www-data:www-data /var/www/html
-RUN chmod -R 755 /var/www/html
+# ضبط الصلاحيات الشاملة
+RUN chown -R www-data:www-data /var/www/html && chmod -R 755 /var/www/html
 
-# إضافة تصريح الدخول لـ Apache (هذا هو المفتاح)
-RUN echo '<Directory /var/www/html/public>\n\
+# إضافة أمر السماح بالدخول المباشر
+RUN printf "<Directory /var/www/html/public>\n\
+    Options Indexes FollowSymLinks\n\
     AllowOverride All\n\
     Require all granted\n\
-</Directory>' >> /etc/apache2/apache2.conf
+</Directory>\n" >> /etc/apache2/apache2.conf
 
 EXPOSE 80
