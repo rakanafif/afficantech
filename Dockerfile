@@ -11,13 +11,11 @@ RUN cp -a temp_core/. /var/www/html/ && rm -rf temp_core
 
 COPY . /var/www/html/
 
-# حقن مفتاح التشفير وإعدادات التشغيل إجبارياً في ذاكرة السيرفر
-ENV APP_KEY="base64:MTIzNDU2Nzg5MDEyMzQ1Njc4OTAxMjM0NTY3ODkwMTI="
-ENV APP_ENV="local"
-ENV APP_DEBUG="true"
+# كتابة المفتاح والإعدادات حرفياً داخل ملف .env بالقوة
+RUN echo "APP_NAME=AfficanDigital\nAPP_ENV=local\nAPP_KEY=base64:MTIzNDU2Nzg5MDEyMzQ1Njc4OTAxMjM0NTY3ODkwMTI=\nAPP_DEBUG=true\nAPP_URL=https://afficantech.onrender.com" > /var/www/html/.env
 
 RUN chown -R www-data:www-data /var/www/html \
-    && chmod -R 777 /var/www/html/storage /var/www/html/bootstrap/cache
+    && chmod -R 777 /var/www/html/storage /var/www/html/bootstrap/cache /var/www/html/.env
 
 RUN printf "<VirtualHost *:80>\n\
     DocumentRoot /var/www/html/public\n\
