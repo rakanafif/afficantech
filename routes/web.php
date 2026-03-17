@@ -34,3 +34,7 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->group(function () {
     Route::get('/dashboard', [AdminController::class, 'index'])->name('admin.dashboard');
     Route::post('/approve-book/{id}', [AdminController::class, 'approveBook'])->name('admin.approve.book');
 });
+// مسار استقبال رسائل واتساب (Webhook)
+use App\Http\Controllers\WhatsAppController;
+Route::post('/whatsapp/webhook', [WhatsAppController::class, 'handleWebhook']);
+
