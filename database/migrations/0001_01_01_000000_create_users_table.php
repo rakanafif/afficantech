@@ -3,11 +3,17 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Support\Facades\DB;
 
 return new class extends Migration
 {
     public function up(): void
     {
+        // هذه الأسطر ستمسح أي جدول قديم بالقوة قبل أن تبدأ بالبناء
+        DB::statement('DROP TABLE IF EXISTS transactions CASCADE');
+        DB::statement('DROP TABLE IF EXISTS books CASCADE');
+        DB::statement('DROP TABLE IF EXISTS users CASCADE');
+
         // 1. جدول المستخدمين
         Schema::create('users', function (Blueprint $table) {
             $table->id();
@@ -22,7 +28,7 @@ return new class extends Migration
             $table->timestamps();
         });
 
-        // 2. جدول الكتب (تم تنظيفه من الأكواد المرفوضة)
+        // 2. جدول الكتب
         Schema::create('books', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
