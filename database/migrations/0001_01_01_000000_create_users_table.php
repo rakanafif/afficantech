@@ -8,7 +8,12 @@ class CreateUsersTable extends Migration
 {
     public function up(): void
     {
-        // 1. جدول المستخدمين
+        // تنظيف الطاولة: مسح الجداول القديمة إن وجدت (بالترتيب الصحيح)
+        Schema::dropIfExists('transactions');
+        Schema::dropIfExists('books');
+        Schema::dropIfExists('users');
+
+        // 1. بناء جدول المستخدمين من جديد
         Schema::create('users', function (Blueprint $table) {
             $table->id();
             $table->string('name');
@@ -22,7 +27,7 @@ class CreateUsersTable extends Migration
             $table->timestamps();
         });
 
-        // 2. جدول الكتب
+        // 2. بناء جدول الكتب
         Schema::create('books', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
@@ -37,7 +42,7 @@ class CreateUsersTable extends Migration
             $table->timestamps();
         });
 
-        // 3. جدول المعاملات
+        // 3. بناء جدول المعاملات
         Schema::create('transactions', function (Blueprint $table) {
             $table->id();
             $table->foreignId('book_id')->constrained();
