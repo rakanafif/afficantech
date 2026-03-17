@@ -40,3 +40,12 @@ Route::post('/whatsapp/webhook', [WhatsAppController::class, 'handleWebhook']);
 use App\Http\Controllers\SitemapController;
 Route::get('/sitemap.xml', [SitemapController::class, 'index']);
 
+// أمر مؤقت لبناء قاعدة البيانات - سنحذفه بعد قليل
+Route::get('/run-migrate', function() {
+    try {
+        \Illuminate\Support\Facades\Artisan::call('migrate', ['--force' => true]);
+        return "تم بناء الجداول بنجاح! قاعدة البيانات جاهزة الآن. 🎉";
+    } catch (\Exception $e) {
+        return "حدث خطأ: " . $e->getMessage();
+    }
+});
