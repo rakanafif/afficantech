@@ -1,4 +1,3 @@
-
 <?php
 
 use Illuminate\Support\Facades\Route;
@@ -9,25 +8,24 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-// سلاح القوة الغاشمة: مسح الذاكرة، التدمير المباشر، ثم البناء
-Route::get('/run-migrate', function() {
+// لاحظ أننا غيرنا الرابط بالكامل للهروب من الذاكرة القديمة
+Route::get('/setup-db', function() {
     try {
-        // 1. صفع السيرفر لمسح ذاكرته العالقة فوراً
+        // 1. مسح ذاكرة السيرفر
         Artisan::call('optimize:clear');
-        Artisan::call('route:clear');
-        Artisan::call('cache:clear');
         
-        // 2. استخدام أوامر SQL مباشرة لتدمير الجداول القديمة من جذورها بدون نقاش
-        $tables = ['users', 'books', 'transactions', 'migrations', 'personal_access_tokens', 'password_reset_tokens', 'sessions', 'cache', 'cache_locks', 'jobs', 'job_batches', 'failed_jobs'];
-        foreach($tables as $table) {
-            DB::statement("DROP TABLE IF EXISTS {$table} CASCADE;");
+        // 2. أمر SQL مباشر لمسح كل الطاولات من جذورها أياً كان اسمها
+        $tables = DB::select('SELECT tablename FROM pg_catalog.pg_tables WHERE schemaname = \'public\'');
+        foreach ($tables as $table) {
+            DB::statement('DROP TABLE IF EXISTS "' . $table->tablename . '" CASCADE');
         }
         
-        // 3. البناء على أرض نظيفة تماماً
+        // 3. بناء الجداول الجديدة الخاصة بنا
         Artisan::call('migrate', ['--force' => true]);
         
-        return "أخيراً! تم مسح الذاكرة العالقة، تدمير الجداول المتمردة، وبناء القاعدة بنجاح ساحق! 🏁🎉";
-    } catch (\Exception $e) {
-        return "حدث خطأ: " . $e->getMessage();
+        return "🎉 انتصار ساحق! تم محو الماضي بالكامل وبناء جداول Affican Digital بنجاح.";
+    } catch (\Throwable $e) { 
+        // استخدمنا Throwable لتلتقط أي خطأ مهما كان نوعه وتكتبه لنا بالعربية
+        return "⛔ السيرفر يقول: " . $e->getMessage();
     }
 });
