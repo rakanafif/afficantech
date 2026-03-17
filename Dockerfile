@@ -11,9 +11,10 @@ RUN cp -a temp_core/. /var/www/html/ && rm -rf temp_core
 
 COPY . /var/www/html/
 
-# السطرين السحريين لتوليد مفتاح الحماية وحل شاشة MissingAppKey
-RUN cp .env.example .env || true
-RUN php artisan key:generate --force
+# حقن مفتاح التشفير وإعدادات التشغيل إجبارياً في ذاكرة السيرفر
+ENV APP_KEY="base64:MTIzNDU2Nzg5MDEyMzQ1Njc4OTAxMjM0NTY3ODkwMTI="
+ENV APP_ENV="local"
+ENV APP_DEBUG="true"
 
 RUN chown -R www-data:www-data /var/www/html \
     && chmod -R 777 /var/www/html/storage /var/www/html/bootstrap/cache
