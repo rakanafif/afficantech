@@ -5,17 +5,19 @@ RUN a2enmod rewrite
 
 COPY . /var/www/html
 
-# بحث تلقائي عن ملف index.php ووضعه في المجلد الصحيح إذا كان مفقوداً
-RUN if [ ! -f "/var/www/html/public/index.php" ]; then \
-    find /var/www/html -name "index.php" -exec cp {} /var/www/html/public/index.php \; ; \
-    fi
+# ضبط الإعدادات لفتح كل شيء للعامة (حل مشكلة 403 بشكل نهائي)
+RUN echo '<Directory /var/www/html/>\n\
+    AllowOverride All\n\
+    Require all granted\n\
+</Directory>\n\
+\n\
+<VirtualHost *:80>\n\
+    DocumentRoot /var/www/html/public\n\
+    ServerName localhost\n\
+</VirtualHost>' > /etc/apache2/sites-available/000-default.conf
 
-# إعدادات Apache النهائية
-ENV APACHE_DOCUMENT_ROOT /var/www/html/public
-RUN sed -ri -e 's!/var/www/html!${APACHE_DOCUMENT_ROOT}!g' /etc/apache2/sites-available/*.conf
-RUN sed -ri -e 's!/var/www/!${APACHE_DOCUMENT_ROOT}!g' /etc/apache2/apache2.conf /etc/apache2/conf-available/*.conf
-
-# صلاحيات كاملة
+# منح صلاحيات كاملة للنظام (777 تعني فتح الأبواب للجميع)
 RUN chown -R www-data:www-data /var/www/html && chmod -R 777 /var/www/html
 
 EXPOSE 80
+
