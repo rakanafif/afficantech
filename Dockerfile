@@ -7,13 +7,21 @@ RUN a2enmod rewrite
 # نسخ ملفات المشروع
 COPY . /var/www/html
 
-# إعداد المسار ليكون داخل مجلد public (حل مشكلة 404)
+# إعداد المسارات (حل مشكلة 404 و 403)
 ENV APACHE_DOCUMENT_ROOT /var/www/html/public
 RUN sed -ri -e 's!/var/www/html!${APACHE_DOCUMENT_ROOT}!g' /etc/apache2/sites-available/*.conf
 RUN sed -ri -e 's!/var/www/!${APACHE_DOCUMENT_ROOT}!g' /etc/apache2/apache2.conf /etc/apache2/conf-available/*.conf
 
-# إنشاء المجلدات وإعطاء الصلاحيات
-RUN mkdir -p /var/www/html/storage /var/www/html/bootstrap/cache
-RUN chown -R www-data:www-data /var/www/html/storage /var/www/html/bootstrap/cache
+# ضبط الصلاحيات بشكل كامل (حل مشكلة Forbidden)
+RUN chown -R www-data:www-data /var/www/html
+RUN chmod -R 755 /var/www/html
+RUN chmod -R 775 /var/www/html/storage /var/www/html/bootstrap/cache
+
+# السماح لـ Apache بالدخول للمجلد
+RUN echo "<Directory /var/www/html/public>\n\
+    Options Indexes FollowSymLinks\n\
+    AllowOverride All\n\
+    Require all granted\n\
+</Directory>" >> /etc/apache2/apache2.conf
 
 EXPOSE 80
