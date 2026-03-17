@@ -1,19 +1,30 @@
 FROM php:8.2-apache
+
+# 1. تثبيت أدوات النظام و برنامج Composer
+RUN apt-get update && apt-get install -y libpng-dev libonig-dev libxml2-dev zip unzip git curl
+RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 RUN a2enmod rewrite
-COPY . /var/www/html
-RUN chmod -R 777 /var/www/html
 
-RUN TARGET=$(find /var/www/html -type d -name "public" | head -n 1); \
-    if [ -z "$TARGET" ]; then \
-    mkdir -p /var/www/html/public && \
-    echo "<?php echo '<h2 style=\"font-family:sans-serif;text-align:center;margin-top:20%;\">السيرفر يعمل بنجاح 100% &#9989;<br>لكن ملفات Laravel مفقودة من GitHub!</h2>'; ?>" > /var/www/html/public/index.php; \
-    TARGET="/var/www/html/public"; \
-    fi; \
-    sed -i "s|/var/www/html|$TARGET|g" /etc/apache2/sites-available/000-default.conf
+WORKDIR /var/www/html
 
-RUN echo "<Directory /var/www/>" >> /etc/apache2/apache2.conf && \
-    echo "    AllowOverride All" >> /etc/apache2/apache2.conf && \
-    echo "    Require all granted" >> /etc/apache2/apache2.conf && \
-    echo "</Directory>" >> /etc/apache2/apache2.conf
+# 2. تحميل "محرك Laravel" الأساسي لتعويض كل الملفات المفقودة
+RUN composer create-project --prefer-dist laravel/laravel:^10.0 temp_core
+RUN cp -a temp_core/. /var/www/html/ && rm -rf temp_core
+
+# 3. نسخ ملفاتك المخصصة من GitHub ودمجها مع المحرك
+COPY . /var/www/html/
+
+# 4. إعطاء الصلاحيات اللازمة للمجلدات
+RUN chown -R www-data:www-data /var/www/html \
+    && chmod -R 777 /var/www/html/storage /var/www/html/bootstrap/cache
+
+# 5. توجيه السيرفر لمجلد public الذي تم إنشاؤه للتو
+RUN printf "<VirtualHost *:80>\n\
+    DocumentRoot /var/www/html/public\n\
+    <Directory /var/www/html/public>\n\
+        AllowOverride All\n\
+        Require all granted\n\
+    </Directory>\n\
+</VirtualHost>\n" > /etc/apache2/sites-available/000-default.conf
 
 EXPOSE 80
