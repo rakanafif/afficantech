@@ -37,4 +37,6 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->group(function () {
 // مسار استقبال رسائل واتساب (Webhook)
 use App\Http\Controllers\WhatsAppController;
 Route::post('/whatsapp/webhook', [WhatsAppController::class, 'handleWebhook']);
+use App\Http\Controllers\SitemapController;
+Route::get('/sitemap.xml', [SitemapController::class, 'index']);
 
