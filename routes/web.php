@@ -1,4 +1,12 @@
+<?php
 
+use Illuminate\Support\Facades\Route;
+
+Route::get('/', function () {
+    return view('welcome'); // هذه صفحتك الرئيسية
+});
+
+// هذا هو الأمر السحري الخاص بنا
 Route::get('/run-migrate', function() {
     try {
         \Illuminate\Support\Facades\Artisan::call('optimize:clear');
