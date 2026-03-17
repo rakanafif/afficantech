@@ -1,77 +1,78 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl">
+<html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Affican Digital Biz Solutions</title>
+    <title>Affican Digital - Votre Bibliothèque Numérique</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700;900&display=swap" rel="stylesheet">
     <style>
-        body { font-family: 'Tajawal', sans-serif; }
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Poppins:wght@300;400;600&display=swap');
+        body { font-family: 'Poppins', sans-serif; }
+        h1, h2, h3, .logo { font-family: 'Playfair Display', serif; }
+        .bg-electric-blue { background-color: #0033CC; }
+        .text-golden-yellow { color: #FFD700; }
+        .bg-golden-yellow { background-color: #FFD700; }
     </style>
 </head>
-<body class="bg-gray-900 text-white selection:bg-yellow-500 selection:text-gray-900">
+<body class="bg-gray-50 text-gray-800">
     
-    <nav class="p-6 flex justify-between items-center border-b border-gray-800 backdrop-blur-md bg-gray-900/80 fixed w-full top-0 z-50">
-        <div class="text-2xl font-black text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 to-yellow-600 tracking-wider">
-            Affican Digital
+    <nav class="bg-electric-blue text-white p-6 shadow-lg">
+        <div class="container mx-auto flex justify-between items-center">
+            <div class="text-3xl font-bold logo tracking-wider">
+                <span class="text-golden-yellow">Affican</span> Digital
+            </div>
+            <div class="hidden md:flex space-x-8 text-lg">
+                <a href="#" class="hover:text-golden-yellow transition">Accueil</a>
+                <a href="#" class="hover:text-golden-yellow transition">Bibliothèque</a>
+                <a href="#" class="hover:text-golden-yellow transition">Vendre un livre</a>
+            </div>
+            <div>
+                <a href="#" class="bg-golden-yellow hover:bg-yellow-500 text-blue-900 font-bold py-2 px-6 rounded-full transition shadow-md">Connexion</a>
+            </div>
         </div>
-        <div class="space-x-6 space-x-reverse hidden md:flex font-bold text-gray-300">
-            <a href="#" class="hover:text-yellow-400 transition">الرئيسية</a>
-            <a href="#" class="hover:text-yellow-400 transition">التسويق الرقمي</a>
-            <a href="/community" class="hover:text-yellow-400 transition">المجتمع</a>
-            <a href="#library" class="hover:text-yellow-400 transition">المكتبة الرقمية</a>
-        </div>
-        <a href="/admin/dashboard" class="border border-yellow-500 text-yellow-500 px-4 py-2 rounded-full hover:bg-yellow-500 hover:text-gray-900 transition font-bold text-sm">
-            تسجيل الدخول
-        </a>
     </nav>
 
-    <div class="flex flex-col items-center justify-center text-center pt-40 pb-20 px-4">
-        <h1 class="text-5xl md:text-7xl font-black mb-6 leading-tight">
-            ارتقِ بأعمالك إلى <br> <span class="text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 to-yellow-600">آفاق رقمية فاخرة</span>
-        </h1>
-        <p class="text-xl md:text-2xl text-gray-400 mb-10 max-w-3xl leading-relaxed">
-            منصتك المتكاملة التي تجمع بين وكالة تسويق رقمي احترافية، مجتمع تفاعلي للنخبة، ومكتبة رقمية آمنة.
-        </p>
-        <div class="flex flex-col sm:flex-row gap-4">
-            <a href="#" class="bg-gradient-to-r from-yellow-500 to-yellow-600 text-gray-900 font-bold py-4 px-10 rounded-full hover:scale-105 transition transform shadow-[0_0_20px_rgba(234,179,8,0.3)]">
-                ابدأ رحلتك معنا
-            </a>
-            <a href="#library" class="bg-gray-800 border border-gray-700 text-white font-bold py-4 px-10 rounded-full hover:border-yellow-500 transition transform">
-                تصفح المكتبة
-            </a>
+    <header class="bg-electric-blue text-white py-24 border-t border-blue-700">
+        <div class="container mx-auto text-center px-4">
+            <h1 class="text-5xl md:text-7xl font-bold mb-6 leading-tight">
+                La Sagesse de l'Esprit <br> <span class="text-golden-yellow">et la Passion du Cœur</span>
+            </h1>
+            <p class="text-lg md:text-xl mb-10 text-blue-100 max-w-2xl mx-auto">
+                Bienvenue sur Affican Digital. La destination ultime pour découvrir, lire et publier des chefs-d'œuvre numériques.
+            </p>
+            <div class="flex flex-col md:flex-row justify-center gap-4">
+                <a href="#" class="bg-golden-yellow hover:bg-yellow-500 text-blue-900 font-bold py-3 px-8 rounded-full text-lg transition shadow-lg">Explorer la Bibliothèque</a>
+                <a href="#" class="bg-transparent border-2 border-golden-yellow text-golden-yellow hover:bg-golden-yellow hover:text-blue-900 font-bold py-3 px-8 rounded-full text-lg transition">Devenir Vendeur</a>
+            </div>
         </div>
-    </div>
+    </header>
 
-    <div id="library" class="grid grid-cols-1 md:grid-cols-3 gap-8 px-8 py-20 bg-gray-950">
-        <div class="p-8 bg-gray-900 rounded-3xl border border-gray-800 hover:border-yellow-500 transition group">
-            <div class="w-14 h-14 bg-gray-800 rounded-full flex items-center justify-center mb-6 group-hover:bg-yellow-500 transition">
-                <span class="text-2xl">📈</span>
+    <section class="py-20 bg-white">
+        <div class="container mx-auto px-4 text-center">
+            <h2 class="text-4xl font-bold mb-16 text-blue-900">Pourquoi Affican Digital ?</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
+                <div class="p-8 bg-gray-50 rounded-xl shadow-sm border-t-4 border-golden-yellow hover:shadow-md transition">
+                    <div class="text-5xl mb-4">📚</div>
+                    <h3 class="text-2xl font-bold mb-4 text-blue-900">Qualité Premium</h3>
+                    <p class="text-gray-600">Une sélection rigoureuse des meilleurs livres numériques pour nos lecteurs exigeants.</p>
+                </div>
+                <div class="p-8 bg-gray-50 rounded-xl shadow-sm border-t-4 border-golden-yellow hover:shadow-md transition">
+                    <div class="text-5xl mb-4">💰</div>
+                    <h3 class="text-2xl font-bold mb-4 text-blue-900">Revenus Élevés</h3>
+                    <p class="text-gray-600">Les auteurs reçoivent 80% des bénéfices. Nous valorisons votre talent créatif.</p>
+                </div>
+                <div class="p-8 bg-gray-50 rounded-xl shadow-sm border-t-4 border-golden-yellow hover:shadow-md transition">
+                    <div class="text-5xl mb-4">🌍</div>
+                    <h3 class="text-2xl font-bold mb-4 text-blue-900">Accès Mondial</h3>
+                    <p class="text-gray-600">Lisez vos livres n'importe où, n'importe quand، sur tous vos appareils.</p>
+                </div>
             </div>
-            <h3 class="text-2xl font-bold text-white mb-4">وكالة التسويق</h3>
-            <p class="text-gray-400 leading-relaxed">استراتيجيات تسويق مبتكرة ومخصصة لتعزيز تواجدك الرقمي وزيادة مبيعاتك باحترافية.</p>
         </div>
-        <div class="p-8 bg-gray-900 rounded-3xl border border-gray-800 hover:border-yellow-500 transition group shadow-[0_0_30px_rgba(234,179,8,0.05)]">
-            <div class="w-14 h-14 bg-gray-800 rounded-full flex items-center justify-center mb-6 group-hover:bg-yellow-500 transition">
-                <span class="text-2xl">🤝</span>
-            </div>
-            <h3 class="text-2xl font-bold text-white mb-4">المجتمع التفاعلي</h3>
-            <p class="text-gray-400 leading-relaxed">تواصل مع رواد الأعمال والمبدعين، تبادل الأفكار، وابنِ شبكة علاقات قوية في بيئة آمنة.</p>
-        </div>
-        <div class="p-8 bg-gray-900 rounded-3xl border border-gray-800 hover:border-yellow-500 transition group">
-            <div class="w-14 h-14 bg-gray-800 rounded-full flex items-center justify-center mb-6 group-hover:bg-yellow-500 transition">
-                <span class="text-2xl">📚</span>
-            </div>
-            <h3 class="text-2xl font-bold text-white mb-4">المكتبة الرقمية</h3>
-            <p class="text-gray-400 leading-relaxed">احصل على وصول حصري لأفضل الكتب والملفات بأساليب دفع آمنة وتشفير عالي المستوى.</p>
-        </div>
-    </div>
+    </section>
 
-    <footer class="text-center py-8 border-t border-gray-800 text-gray-500">
-        <p>&copy; 2026 Affican Digital Biz Solutions. جميع الحقوق محفوظة.</p>
+    <footer class="bg-electric-blue text-center py-8 text-blue-200 border-t border-blue-800">
+        <p>&copy; 2026 Affican Digital. Tous droits réservés.</p>
     </footer>
 
 </body>
 </html>
-
