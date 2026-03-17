@@ -4,16 +4,11 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateUsersTable extends Migration
+return new class extends Migration
 {
     public function up(): void
     {
-        // تنظيف الطاولة: مسح الجداول القديمة إن وجدت (بالترتيب الصحيح)
-        Schema::dropIfExists('transactions');
-        Schema::dropIfExists('books');
-        Schema::dropIfExists('users');
-
-        // 1. بناء جدول المستخدمين من جديد
+        // 1. جدول المستخدمين
         Schema::create('users', function (Blueprint $table) {
             $table->id();
             $table->string('name');
@@ -27,7 +22,7 @@ class CreateUsersTable extends Migration
             $table->timestamps();
         });
 
-        // 2. بناء جدول الكتب
+        // 2. جدول الكتب (تم تنظيفه من الأكواد المرفوضة)
         Schema::create('books', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
@@ -36,13 +31,13 @@ class CreateUsersTable extends Migration
             $table->string('cover_image')->nullable();
             $table->string('file_path')->nullable();
             $table->decimal('price', 8, 2);
-            $table->decimal('site_commission', 8, 2)->virtualAs('price * 0.20');
-            $table->decimal('seller_net', 8, 2)->virtualAs('price * 0.80');
+            $table->decimal('site_commission', 8, 2)->nullable(); 
+            $table->decimal('seller_net', 8, 2)->nullable(); 
             $table->enum('status', ['pending', 'published', 'rejected'])->default('pending');
             $table->timestamps();
         });
 
-        // 3. بناء جدول المعاملات
+        // 3. جدول المعاملات
         Schema::create('transactions', function (Blueprint $table) {
             $table->id();
             $table->foreignId('book_id')->constrained();
@@ -61,4 +56,4 @@ class CreateUsersTable extends Migration
         Schema::dropIfExists('books');
         Schema::dropIfExists('users');
     }
-}
+};
