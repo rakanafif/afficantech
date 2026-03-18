@@ -1,5 +1,4 @@
 <?php
-
 return [
     'welcome' => 'أهلاً بكم في Affican Digital',
     'home' => 'الرئيسية',
