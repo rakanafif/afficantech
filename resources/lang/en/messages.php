@@ -1,3 +1,4 @@
+<?php
 
 return [
     'welcome' => 'Welcome to Affican Digital',
