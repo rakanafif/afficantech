@@ -36,8 +36,8 @@
     </nav>
 
     <header class="py-32 text-center px-4 relative overflow-hidden">
-        <div class="absolute top-0 left-1/2 -translate-x-1/2 w-96 h-96 bg-blue-900/10 blur-[120px] rounded-full"></div>
-
+        <div class="absolute top-0 left-1/2 -translate-x-1/2 w-64 h-64 bg-[#0077FF] opacity-10 blur-[80px] rounded-full shadow-[0_0_100px_rgba(0,119,255,0.2)]"></div>
+        
         <div class="relative z-10">
             <h1 class="text-5xl md:text-7xl font-black mb-8 leading-tight">
                 <span class="text-electric-blue glow-blue">{{ __('messages.welcome') }}</span>
