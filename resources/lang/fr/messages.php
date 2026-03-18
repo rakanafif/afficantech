@@ -27,4 +27,3 @@ return [
     'upload_desc' => 'Votre passerelle pour publier des connaissances et de l\'excellence ; téléchargez votre prochaine œuvre et partagez-la avec un public mondial',
     'new_book' => 'Télécharger un nouveau livre',
 ];
-
