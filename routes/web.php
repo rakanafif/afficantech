@@ -5,32 +5,31 @@ use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Artisan;
 
-// دالة صغيرة لتطبيق اللغة المختارة
-function applyLang() {
+// 1. الصفحة الرئيسية مع تفعيل اللغة
+Route::get('/', function () {
     if (Session::has('locale')) {
         App::setLocale(Session::get('locale'));
     }
-}
-
-// 1. الصفحة الرئيسية
-Route::get('/', function () {
-    applyLang();
     return view('home');
 });
 
-// 2. صفحة تسجيل الدخول
+// 2. صفحة تسجيل الدخول مع تفعيل اللغة
 Route::get('/login', function () {
-    applyLang();
+    if (Session::has('locale')) {
+        App::setLocale(Session::get('locale'));
+    }
     return view('login');
 });
 
-// 3. صفحة إنشاء حساب
+// 3. صفحة إنشاء حساب (سأبرمجها لك لاحقاً)
 Route::get('/register', function () {
-    applyLang();
+    if (Session::has('locale')) {
+        App::setLocale(Session::get('locale'));
+    }
     return view('register');
 });
 
-// 4. محرك تغيير اللغة (يحفظ اختيارك)
+// 4. محرك تغيير اللغة (لحفظ اختيارك في الذاكرة)
 Route::get('/lang/{locale}', function ($locale) {
     if (in_array($locale, ['ar', 'fr', 'en'])) {
         Session::put('locale', $locale);
@@ -41,5 +40,5 @@ Route::get('/lang/{locale}', function ($locale) {
 // 5. رابط تطهير السيرفر (المنقذ)
 Route::get('/clear', function() {
     Artisan::call('optimize:clear');
-    return "🏆 تم تطهير السيرفر بنجاح! جرب الآن تغيير اللغة من الهوم.";
+    return "🏆 تم تطهير السيرفر بنجاح! الموقع عاد للعمل بجماله المعهود.";
 });
