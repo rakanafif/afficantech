@@ -31,6 +31,11 @@
 
             <button type="submit" class="w-full bg-[#0033CC] hover:bg-blue-800 text-white font-bold py-3 rounded-xl transition shadow-lg mb-4">
                 Se Connecter
+                <p class="text-center text-sm text-gray-600 mt-6">
+    Pas encore de compte ? 
+    <a href="/register" class="text-[#0033CC] font-bold hover:underline">S'inscrire</a>
+                </p>
+                
             </button>
             
             <a href="/" class="block text-center text-sm text-[#0033CC] hover:underline">Retour à l'accueil</a>
