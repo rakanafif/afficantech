@@ -27,4 +27,3 @@ return [
     'upload_desc' => 'Your gateway to publishing knowledge and excellence; upload your next work and share it with a global audience',
     'new_book' => 'Upload New Book',
 ];
-
