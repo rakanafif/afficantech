@@ -42,3 +42,11 @@ Route::get('/clear', function() {
     Artisan::call('optimize:clear');
     return "🏆 تم تطهير السيرفر بنجاح! الموقع عاد للعمل بجماله المعهود.";
 });
+// 6. مساحة البائع (لوحة التحكم)
+Route::get('/vendor/dashboard', function () {
+    if (Session::has('locale')) {
+        App::setLocale(Session::get('locale'));
+    }
+    return view('vendor.dashboard');
+});
+
