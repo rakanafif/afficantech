@@ -15,7 +15,7 @@
 
     <div class="flex flex-col md:flex-row min-h-screen">
         <aside class="w-full md:w-64 bg-gray-900/50 border-{{ app()->getLocale() == 'ar' ? 'l' : 'r' }} border-gray-800 p-6">
-            <h2 class="text-[#FFD700] text-2xl font-black mb-10 glow-gold">Affican</h2>
+            <h2 class="text-[#FFD700] text-2xl font-black mb-10 glow-gold italic">Affican</h2>
             <nav class="space-y-4">
                 <a href="/" class="block text-gray-400 hover:text-[#0077FF] transition">🏠 {{ __('messages.home') }}</a>
                 <a href="#" class="block text-[#0077FF] font-bold">📊 الإحصائيات</a>
@@ -38,17 +38,18 @@
                     <p class="text-2xl font-bold text-[#0077FF]">0</p>
                 </div>
                 <div class="bg-gray-900/30 p-6 rounded-2xl border border-gray-800">
-                    <p class="text-gray-500 text-sm">الكتب المنشورة</p>
+                    <p class="text-gray-500 text-sm">الأعمال الرقمية</p>
                     <p class="text-2xl font-bold">0</p>
                 </div>
             </div>
 
             <section class="bg-gray-900/20 border border-dashed border-gray-800 p-8 rounded-3xl text-center">
                 <div class="w-16 h-16 bg-[#0077FF]/10 rounded-full flex items-center justify-center mx-auto mb-4">
-                    <span class="text-[#0077FF] text-2xl">+</span>
+                    <span class="text-[#0077FF] text-2xl font-black">+</span>
                 </div>
                 <h2 class="text-xl font-bold mb-2">ارفع عملك الإبداعي الآن</h2>
-                <p class="text-gray-500 text-sm mb-6">ابدأ بنشر "حكمة العقل وشغف القلب" ودع العالم يقرأ</p>
+                <p class="text-gray-400 text-sm mb-6 max-w-md mx-auto">بوابتك لنشر المعرفة والتميز؛ ارفع عملك القادم وشاركه مع جمهورك العالمي</p>
+                
                 <button class="bg-[#FFD700] text-black font-black py-3 px-8 rounded-full hover:scale-105 transition shadow-lg">
                     رفع كتاب جديد
                 </button>
