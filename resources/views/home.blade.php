@@ -53,7 +53,7 @@
                 
                 <a href="/vendor/dashboard" class="border-2 border-electric-blue text-electric-blue font-bold py-4 px-12 rounded-full text-xl hover:bg-electric-blue hover:text-white transition-all">
                     {{ __('messages.be_vender') }}
-                </a>
+                </e>
             </div>
         </div>
     </header>
