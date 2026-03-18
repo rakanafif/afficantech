@@ -24,6 +24,8 @@
             
             <div class="flex items-center space-x-4">
                 <div class="flex items-center space-x-2 bg-gray-900 px-3 py-1 rounded-full text-xs font-bold border border-gray-800">
+                    <a href="/lang/en" class="{{ app()->getLocale() == 'en' ? 'text-golden-yellow' : 'text-gray-500' }}">EN</a>
+                    <span class="text-gray-700">|</span>
                     <a href="/lang/fr" class="{{ app()->getLocale() == 'fr' ? 'text-golden-yellow' : 'text-gray-500' }}">FR</a>
                     <span class="text-gray-700">|</span>
                     <a href="/lang/ar" class="{{ app()->getLocale() == 'ar' ? 'text-golden-yellow' : 'text-gray-500' }}">AR</a>
@@ -36,7 +38,6 @@
     </nav>
 
     <header class="py-32 text-center px-4 relative overflow-hidden">
-        
         <div class="relative z-10">
             <h1 class="text-5xl md:text-7xl font-black mb-8 leading-tight">
                 <span class="text-electric-blue glow-blue">{{ __('messages.welcome') }}</span>
@@ -52,7 +53,7 @@
                 
                 <a href="/vendor/dashboard" class="border-2 border-electric-blue text-electric-blue font-bold py-4 px-12 rounded-full text-xl hover:bg-electric-blue hover:text-white transition-all">
                     {{ __('messages.be_vender') }}
-                </e>
+                </a>
             </div>
         </div>
     </header>
@@ -63,3 +64,4 @@
 
 </body>
 </html>
+
