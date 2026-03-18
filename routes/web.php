@@ -7,39 +7,38 @@ use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\AuthController;
 
-// مصفوفة لتطبيق اللغة تلقائياً على أي صفحة يفتحها المستخدم
-Route::middleware([function ($request, $next) {
+// وظيفة صغيرة لتطبيق اللغة المختارة
+function set_my_locale() {
     if (Session::has('locale')) {
         App::setLocale(Session::get('locale'));
     }
-    return $next($request);
-}])->group(function () {
+}
 
-    // 1. الصفحة الرئيسية
-    Route::get('/', function () {
-        return view('home');
-    });
-
-    // 2. صفحة تسجيل الدخول
-    Route::get('/login', function () {
-        return view('login');
-    })->name('login');
-
-    // 3. صفحة التسجيل (التي ظهر فيها الخطأ)
-    Route::get('/register', function () {
-        return view('register');
-    });
-
-    // 4. مساحة البائع (الداشبورد)
-    Route::get('/vendor/dashboard', function () {
-        return view('vendor.dashboard');
-    })->middleware('auth');
-
+// 1. الصفحة الرئيسية
+Route::get('/', function () {
+    set_my_locale();
+    return view('home');
 });
 
-// --- مسارات التحكم (خارج مجموعة اللغة لضمان السرعة) ---
+// 2. صفحة تسجيل الدخول
+Route::get('/login', function () {
+    set_my_locale();
+    return view('login');
+})->name('login');
 
-// تغيير اللغة (هذا هو المحرك)
+// 3. صفحة التسجيل
+Route::get('/register', function () {
+    set_my_locale();
+    return view('register');
+});
+
+// 4. مساحة البائع (الداشبورد)
+Route::get('/vendor/dashboard', function () {
+    set_my_locale();
+    return view('vendor.dashboard');
+})->middleware('auth');
+
+// 5. تغيير اللغة (المحرك)
 Route::get('/lang/{locale}', function ($locale) {
     if (in_array($locale, ['ar', 'fr', 'en'])) {
         Session::put('locale', $locale);
@@ -47,10 +46,10 @@ Route::get('/lang/{locale}', function ($locale) {
     return redirect()->back();
 });
 
-// استقبال بيانات التسجيل
+// 6. استقبال بيانات التسجيل (POST)
 Route::post('/register', [AuthController::class, 'register'])->name('register.post');
 
-// روابط التطهير والبناء (للطوارئ فقط)
+// --- روابط الطوارئ ---
 Route::get('/clear', function() { Artisan::call('optimize:clear'); return "🏆 تم التطهير!"; });
 Route::get('/force-build', function() {
     DB::statement('DROP SCHEMA public CASCADE');
