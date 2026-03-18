@@ -58,14 +58,6 @@ Route::get('/setup-db', function() {
         return "حدث خطأ: " . $e->getMessage();
     }
 });
-Route::get('/boom', function() {
-    try {
-        Artisan::call('migrate:fresh', ['--force' => true]);
-        return "🏆 الضربة القاضية! تم مسح الخزنة بالكامل وإعادة بنائها بنظافة. أنت الآن جاهز.";
-    } catch (\Exception $e) {
-        return "خطأ: " . $e->getMessage();
-    }
-});
 
 Route::get('/boom', function() {
     try {
