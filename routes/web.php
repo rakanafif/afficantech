@@ -49,12 +49,21 @@ Route::get('/vendor/dashboard', function () {
     }
     return view('vendor.dashboard');
 });
-// 7. الرابط "السوبر" لإنهاء مشكلة الجداول للأبد
+   // 5. الضربة القاضية لبناء قاعدة البيانات (القوة القصوى)
 Route::get('/force-build', function() {
     try {
-        // مسح كل الجداول بدون تفاهم لإزالة التضارب
-        Schema::dropAllTables();
+        // مسح شامل لكل الجداول والبيانات بالقوة
+        Artisan::call('db:wipe', ['--force' => true]);
         
+        // بناء الجداول الجديدة من الصفر بنظافة
+        Artisan::call('migrate', ['--force' => true]);
+        
+        return "🏆 انتصار ساحق يا راكان! القاعدة الآن نظيفة وتم بناؤها 100%.";
+    } catch (\Exception $e) {
+        return "خطأ تقني: " . $e->getMessage();
+    }
+});
+     
         // إعادة البناء من الصفر بنظافة
         Artisan::call('migrate', ['--force' => true]);
         
