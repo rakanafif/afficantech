@@ -49,4 +49,22 @@ Route::get('/vendor/dashboard', function () {
     }
     return view('vendor.dashboard');
 });
+// 7. زر بناء قاعدة البيانات (المنقذ الذكي)
+Route::get('/migrate', function() {
+    try {
+        Artisan::call('migrate', ['--force' => true]);
+        return "🏆 مبروك يا راكان! تم بناء جداول قاعدة البيانات بنجاح. الخزنة الآن جاهزة 100% لاستقبال أعمالك.";
+    } catch (\Exception $e) {
+        return "حدث خطأ: " . $e->getMessage();
+    }
+});
+// 7. زر بناء قاعدة البيانات (المنقذ الذكي)
+Route::get('/migrate', function() {
+    try {
+        Artisan::call('migrate', ['--force' => true]);
+        return "🏆 مبروك يا راكان! تم بناء جداول قاعدة البيانات بنجاح. الخزنة الآن جاهزة 100% لاستقبال أعمالك.";
+    } catch (\Exception $e) {
+        return "حدث خطأ: " . $e->getMessage();
+    }
+});
 
