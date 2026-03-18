@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Artisan;
-
+use Illuminate\Support\Facades\Schema;
 // 1. الصفحة الرئيسية مع تفعيل اللغة
 Route::get('/', function () {
     if (Session::has('locale')) {
