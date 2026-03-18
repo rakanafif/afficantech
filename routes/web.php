@@ -2,24 +2,36 @@
 
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Artisan;
 
-// 1. الصفحة الرئيسية
-Route::get('/', function () {
-    return view('home');
-});
+// --- الغلاف الذكي للغات (هذا هو المحرك الذي سيجعل الموقع يتذكر لغتك) ---
+Route::middleware([function ($request, $next) {
+    if (Session::has('locale')) {
+        App::setLocale(Session::get('locale'));
+    }
+    return $next($request);
+}])->group(function () {
 
-// 2. صفحة تسجيل الدخول
-Route::get('/login', function () {
-    return view('login');
-});
+    // 1. الصفحة الرئيسية
+    Route::get('/', function () {
+        return view('home');
+    });
 
-// 3. صفحة إنشاء حساب
-Route::get('/register', function () {
-    return view('register');
-});
+    // 2. صفحة تسجيل الدخول
+    Route::get('/login', function () {
+        return view('login');
+    });
 
-// 4. محرك تغيير اللغة
+    // 3. صفحة إنشاء حساب (سأقوم ببرمجتها لك لاحقاً)
+    Route::get('/register', function () {
+        return view('register');
+    });
+
+});
+// --- نهاية الغلاف الذكي ---
+
+// محرك تغيير اللغة (لحفظ الاختيار في الذاكرة)
 Route::get('/lang/{locale}', function ($locale) {
     if (in_array($locale, ['ar', 'fr', 'en'])) {
         Session::put('locale', $locale);
@@ -27,8 +39,8 @@ Route::get('/lang/{locale}', function ($locale) {
     return redirect()->back();
 });
 
-// 5. رابط تطهير السيرفر (المنقذ) - يجب أن يكون مستقلاً هنا
+// رابط تطهير السيرفر (المنقذ)
 Route::get('/clear', function() {
     Artisan::call('optimize:clear');
-    return "🏆 تم تطهير السيرفر بنجاح! Affican Digital جاهزة الآن.";
+    return "🏆 تم تطهير السيرفر بنجاح! جرب الآن تغيير اللغة من الهوم.";
 });
