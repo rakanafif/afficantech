@@ -1,5 +1,4 @@
 <?php
-
 return [
     'welcome' => 'Welcome to Affican Digital',
     'home' => 'Home',
@@ -13,11 +12,19 @@ return [
     'get_quote' => 'Get a Quote',
     'discover' => 'Discover the Excellence of Digital Content',
     'buy_now' => 'Buy Now',
-    
-    // كلمات صفحة الدخول (Login Page)
     'email' => 'Email Address',
     'password' => 'Password',
     'login_btn' => 'Log In',
-    'no_account' => "Don't have an account?",
+    'no_account' => 'Don\'t have an account?',
     'register_now' => 'Sign Up Now',
+    // كلمات لوحة التحكم الجديدة
+    'stats' => 'Statistics',
+    'your_books' => 'Your Books',
+    'net_profit' => 'Net Profit (80%)',
+    'total_sales' => 'Total Sales',
+    'digital_works' => 'Digital Works',
+    'upload_creative' => 'Upload Your Creative Work Now',
+    'upload_desc' => 'Your gateway to publishing knowledge and excellence; upload your next work and share it with a global audience',
+    'new_book' => 'Upload New Book',
 ];
+
