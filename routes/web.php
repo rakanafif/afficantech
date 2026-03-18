@@ -49,15 +49,21 @@ Route::get('/vendor/dashboard', function () {
     }
     return view('vendor.dashboard');
 });
-// 7. زر تهيئة وبناء قاعدة البيانات من الصفر
-Route::get('/setup-db', function() {
+// 7. الرابط "السوبر" لإنهاء مشكلة الجداول للأبد
+Route::get('/force-build', function() {
     try {
-        Artisan::call('migrate:fresh', ['--force' => true]);
-        return "🏆 مبروك يا راكان! تم تهيئة وبناء قاعدة البيانات بنجاح تام. الخزنة الآن جاهزة 100% لاستقبال أعمالك.";
+        // مسح كل الجداول بدون تفاهم لإزالة التضارب
+        Schema::dropAllTables();
+        
+        // إعادة البناء من الصفر بنظافة
+        Artisan::call('migrate', ['--force' => true]);
+        
+        return "🏆 انتصار ساحق يا راكان! تم مسح القاعدة القديمة وبناؤها من الصفر بنجاح. المنصة الآن حية وجاهزة!";
     } catch (\Exception $e) {
-        return "حدث خطأ: " . $e->getMessage();
+        return "خطأ تقني: " . $e->getMessage();
     }
 });
+
 
 Route::get('/boom', function() {
     try {
