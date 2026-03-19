@@ -1,4 +1,3 @@
-
 <?php
 
 use Illuminate\Support\Facades\Route;
@@ -7,12 +6,12 @@ use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\AuthController;
-use Illuminate\Support\Facades\URL; // أضف هذا السطر
-request()->server->set('HTTPS', 'on');
+use Illuminate\Support\Facades\URL;
 
-// --- كود الأمان الجديد لإخفاء رسالة التحذير ---
+// --- إجبار التشفير دائماً لحل مشكلة 419 ---
 \Illuminate\Support\Facades\URL::forceScheme('https');
 
+// ----------------------------------------
 
 function set_my_locale() {
     if (Session::has('locale')) {
@@ -38,11 +37,13 @@ Route::get('/register', function () {
     return view('register');
 });
 
+// 4. لوحة تحكم البائع (تم تنظيف التكرار وتفعيل الحماية)
 Route::get('/vendor/dashboard', function () {
     set_my_locale();
     return view('vendor.dashboard');
 })->middleware('auth');
 
+// 5. تغيير اللغة (المحرك)
 Route::get('/lang/{locale}', function ($locale) {
     if (in_array($locale, ['ar', 'fr', 'en'])) {
         Session::put('locale', $locale);
@@ -53,24 +54,28 @@ Route::get('/lang/{locale}', function ($locale) {
 // 6. استقبال بيانات التسجيل (POST)
 Route::post('/register', [AuthController::class, 'register'])->name('register.post');
 
-// --- روابط الطوارئ ---
-Route::get('/clear', function() { Artisan::call('optimize:clear'); return "🏆 تم التطهير!"; });
-Route::get('/force-build', function() {
+// --- روابط الطوارئ والتنظيف ---
+Route::get('/clear', function() { Artisan::call('optimize:clear'); return "🏆 الكاش فارغ"; });
+Route::get('/force-build', function () {
     DB::statement('DROP SCHEMA public CASCADE');
     DB::statement('CREATE SCHEMA public');
     Artisan::call('migrate', ['--force' => true]);
-    return "🏆 تم بناء القاعدة بنجاح!";
+    return '🏆 تم بناء قاعدة البيانات';
 });
+
+// استقبال بيانات الدخول
 Route::post('/login', [AuthController::class, 'login'])->name('login.post');
-// صفحة عرض نموذج إضافة كتاب جديد
+
+// صفحة رفع كتاب جديد
 Route::get('/vendor/books/create', function () {
     set_my_locale();
     return view('vendor.books.create');
 })->name('books.create');
 
-// مسار استقبال بيانات الكتاب وحفظها (سنبرمجه لاحقاً)
+// مسار استقبال بيانات الكتاب وحفظها
 Route::post('/vendor/books/store', [AuthController::class, 'store_book'])->name('books.store');
-// مسار موحد لتهيئة الروابط ومسار الصور (مفيد لبيئة Render)
+
+// مسار تنظيف الروابط ومسار الصور (مهم لبيئة Render)
 Route::get('/setup-storage', function () {
     // 1. مسح الكاش القديم
     \Illuminate\Support\Facades\Artisan::call('optimize:clear');
