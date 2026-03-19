@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\AuthController;
 use Illuminate\Support\Facades\URL; // أضف هذا السطر
+request()->server->set('HTTPS', 'on');
 
 // --- كود الأمان الجديد لإخفاء رسالة التحذير ---
 \Illuminate\Support\Facades\URL::forceScheme('https');
