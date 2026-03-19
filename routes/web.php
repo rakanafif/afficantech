@@ -78,3 +78,13 @@ Route::get('/vendor/books/create', function () {
 
 // مسار استقبال بيانات الكتاب وحفظها (سنبرمجه لاحقاً)
 Route::post('/vendor/books/store', [AuthController::class, 'store_book'])->name('books.store');
+// مسار موحد لتهيئة الروابط ومسار الصور (مفيد لبيئة Render)
+Route::get('/setup-storage', function () {
+    // 1. مسح الكاش القديم
+    \Illuminate\Support\Facades\Artisan::call('optimize:clear');
+    
+    // 2. إنشاء رابط الصور
+    \Illuminate\Support\Facades\Artisan::call('storage:link');
+    
+    return '✅ تم تنظيف النظام وربط مسار الصور بنجاح! يمكنك الآن رؤية أغلفة الكتب.';
+});
