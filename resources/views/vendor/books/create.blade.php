@@ -21,7 +21,7 @@
             
             <div class="mb-6">
                 <label class="block text-[#9877FF] font-bold mb-2 uppercase text-xs tracking-widest">Titre du Livre</label>
-                <input type="text" name="title" placeholder="Ex: نبض الحقيقة" class="w-full bg-black border border-gray-800 p-4 rounded-xl focus:border-[#FFB700] outline-none transition" required>
+                <input type="text" name="title" placeholder="Ex: " class="w-full bg-black border border-gray-800 p-4 rounded-xl focus:border-[#FFB700] outline-none transition" required>
             </div>
 
             <div class="mb-6">
