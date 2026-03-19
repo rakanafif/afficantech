@@ -7,7 +7,8 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
-        body { font-family: 'Poppins', sans-serif; background-color: #0033CC; }
+        body { font-family: 'Poppins', 'Cairo', sans-serif; background-color: #0a0a0a; color: white; }
+
     </style>
 </head>
 <body class="flex items-center justify-center min-h-screen py-10 px-4">
