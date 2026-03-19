@@ -1,3 +1,4 @@
+
 <?php
 
 use Illuminate\Support\Facades\Route;
@@ -6,8 +7,14 @@ use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\AuthController;
+use Illuminate\Support\Facades\URL; // أضف هذا السطر
 
-// وظيفة صغيرة لتطبيق اللغة المختارة
+// --- كود الأمان الجديد لإخفاء رسالة التحذير ---
+if (config('app.env') !== 'local') {
+    URL::forceScheme('https');
+}
+// ------------------------------------------
+
 function set_my_locale() {
     if (Session::has('locale')) {
         App::setLocale(Session::get('locale'));
