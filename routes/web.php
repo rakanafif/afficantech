@@ -65,3 +65,13 @@ Route::get('/force-build', function() {
     return "🏆 تم بناء القاعدة بنجاح!";
 });
 Route::post('/login', [AuthController::class, 'login'])->name('login.post');
+// صفحة عرض نموذج إضافة كتاب جديد
+Route::get('/vendor/books/create', function () {
+    set_my_locale();
+    return view('vendor.books.create');
+})->middleware('auth')->name('books.create');
+
+// مسار استقبال بيانات الكتاب وحفظها (سنبرمجه لاحقاً)
+Route::post('/vendor/books/store', function () {
+    return "قريباً سيتم حفظ كتابك نبض الحقيقة هنا!";
+})->name('books.store');
