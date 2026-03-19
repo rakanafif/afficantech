@@ -16,9 +16,12 @@
         <h2 class="text-3xl font-black text-[#FFB700] mb-2">{{ __('messages.add_book_title') }}</h2>
         <p class="text-gray-400 mb-8">{{ __('messages.book_details_desc') }}</p>
 
-        <form action="{{ route('books.store') }}" method="POST" enctype="multipart/form-data">
-            @csrf
-            
+        
+          <form action="{{ url('/vendor/books/store') }}" method="POST" enctype="multipart/form-data">
+    @csrf
+
+    <div class="mb-6">
+  
             <div class="mb-6">
                 <label class="block text-[#9877FF] font-bold mb-2 uppercase text-xs tracking-widest">Titre du Livre</label>
                 <input type="text" name="title" placeholder="Ex: " class="w-full bg-black border border-gray-800 p-4 rounded-xl focus:border-[#FFB700] outline-none transition" required>
