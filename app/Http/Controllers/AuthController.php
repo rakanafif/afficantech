@@ -5,17 +5,27 @@ use App\Models\User;
 use Illuminate\Support\Facades\{Hash, Auth};
 
 class AuthController extends Controller {
+    // وظيفة التسجيل
     public function register(Request $request) {
-        // قمنا بتقليل القيود لضمان نجاح التسجيل الآن
-        $user = User::create([
-            'name'     => $request->name,
-            'email'    => $request->email,
-            'password' => Hash::make($request->password),
-        ]);
+        try {
+            $user = User::create([
+                'name' => $request->name,
+                'email' => $request->email,
+                'password' => Hash::make($request->password),
+            ]);
+            Auth::login($user);
+            return redirect('/vendor/dashboard');
+        } catch (\Exception $e) {
+            return "هذا الحساب موجود بالفعل، يرجى تسجيل الدخول.";
+        }
+    }
 
-        Auth::login($user);
-        
-        // التوجه فوراً للوحة التحكم
-        return redirect('/vendor/dashboard');
+    // وظيفة الدخول (نحتاجها الآن)
+    public function login(Request $request) {
+        $credentials = $request->only('email', 'password');
+        if (Auth::attempt($credentials)) {
+            return redirect('/vendor/dashboard');
+        }
+        return back()->with('error', 'بيانات الدخول غير صحيحة');
     }
 }
