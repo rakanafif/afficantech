@@ -17,20 +17,22 @@
             <p class="text-gray-400 mt-2">{{ __('messages.discover') }}</p>
         </div>
 
-        <form>
-            <div class="mb-6 text-{{ app()->getLocale() == 'ar' ? 'right' : 'left' }}">
-                <label class="text-[#0077FF] font-semibold mb-2 block text-sm uppercase tracking-widest">{{ __('messages.email') }}</label>
-                <input type="email" class="w-full bg-black px-4 py-3 rounded-xl border border-gray-800 text-white focus:border-[#FFD700] focus:outline-none transition">
-            </div>
-            <div class="mb-8 text-{{ app()->getLocale() == 'ar' ? 'right' : 'left' }}">
-                <label class="text-[#0077FF] font-semibold mb-2 block text-sm uppercase tracking-widest">{{ __('messages.password') }}</label>
-                <input type="password" class="w-full bg-black px-4 py-3 rounded-xl border border-gray-800 text-white focus:border-[#FFD700] focus:outline-none transition">
-            </div>
+        <form action="{{ route('login.post') }}" method="POST">
+    @csrf
+    <div class="mb-5 text-{{ app()->getLocale() == 'ar' ? 'right' : 'left' }}">
+        <label class="text-[#9877FF] font-semibold mb-2 block text-sm uppercase tracking-widest">{{ __('messages.email') }}</label>
+        <input type="email" name="email" class="w-full bg-black px-4 py-3 rounded-xl border border-gray-800 text-white focus:border-[#9877FF] outline-none" required>
+    </div>
 
-            <button type="submit" class="w-full bg-[#FFD700] hover:bg-yellow-500 text-black font-black py-3 rounded-xl transition shadow-[0_0_20px_rgba(255,215,0,0.2)]">
-                {{ __('messages.login_btn') }}
-            </button>
-        </form>
+    <div class="mb-5 text-{{ app()->getLocale() == 'ar' ? 'right' : 'left' }}">
+        <label class="text-[#9877FF] font-semibold mb-2 block text-sm uppercase tracking-widest">{{ __('messages.password') }}</label>
+        <input type="password" name="password" class="w-full bg-black px-4 py-3 rounded-xl border border-gray-800 text-white focus:border-[#9877FF] outline-none" required>
+    </div>
+
+    <button type="submit" class="w-full bg-[#FFB700] hover:bg-yellow-500 text-black font-black py-3 rounded-xl transition duration-300 shadow-lg">
+        {{ __('messages.login_btn') }}
+    </button>
+</form>
 
         <p class="text-center text-sm text-gray-500 mt-8">
             {{ __('messages.no_account') }} <a href="/register" class="text-[#0077FF] font-bold hover:underline">{{ __('messages.register_now') }}</a>
