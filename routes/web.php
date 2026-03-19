@@ -8,8 +8,10 @@ use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\AuthController;
 use Illuminate\Support\Facades\URL;
 
-// --- إجبار التشفير دائماً لحل مشكلة 419 ---
-\Illuminate\Support\Facades\URL::forceScheme('https');
+// الرجوع للوضع الآمن الذي يتجاوز فحص Render
+if (config('app.env') !== 'local') {
+    URL::forceScheme('https');
+}
 
 // ----------------------------------------
 
@@ -37,7 +39,7 @@ Route::get('/register', function () {
     return view('register');
 });
 
-// 4. لوحة تحكم البائع (تم تنظيف التكرار وتفعيل الحماية)
+// 4. لوحة تحكم البائع (محمية)
 Route::get('/vendor/dashboard', function () {
     set_my_locale();
     return view('vendor.dashboard');
@@ -75,13 +77,9 @@ Route::get('/vendor/books/create', function () {
 // مسار استقبال بيانات الكتاب وحفظها
 Route::post('/vendor/books/store', [AuthController::class, 'store_book'])->name('books.store');
 
-// مسار تنظيف الروابط ومسار الصور (مهم لبيئة Render)
+// مسار تنظيف الروابط ومسار الصور
 Route::get('/setup-storage', function () {
-    // 1. مسح الكاش القديم
     \Illuminate\Support\Facades\Artisan::call('optimize:clear');
-    
-    // 2. إنشاء رابط الصور
     \Illuminate\Support\Facades\Artisan::call('storage:link');
-    
     return '✅ تم تنظيف النظام وربط مسار الصور بنجاح! يمكنك الآن رؤية أغلفة الكتب.';
 });
