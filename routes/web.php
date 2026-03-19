@@ -39,11 +39,15 @@ Route::get('/register', function () {
     return view('register');
 });
 
-// 4. مساحة البائع (الداشبورد)
 Route::get('/vendor/dashboard', function () {
     set_my_locale();
     return view('vendor.dashboard');
-})->middleware('auth');
+}); // حذفنا كلمة middleware('auth') مؤقتاً
+
+Route::get('/vendor/dashboard', function () {
+    set_my_locale();
+    return view('vendor.dashboard');
+}); // حذفنا كلمة middleware('auth') مؤقتاً
 
 // 5. تغيير اللغة (المحرك)
 Route::get('/lang/{locale}', function ($locale) {
