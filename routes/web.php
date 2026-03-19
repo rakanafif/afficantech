@@ -77,6 +77,4 @@ Route::get('/vendor/books/create', function () {
 })->name('books.create');
 
 // مسار استقبال بيانات الكتاب وحفظها (سنبرمجه لاحقاً)
-Route::post('/vendor/books/store', function () {
-    return "قريباً سيتم حفظ كتابك نبض الحقيقة هنا!";
-})->name('books.store');
+Route::post('/vendor/books/store', [AuthController::class, 'store_book'])->name('books.store');
