@@ -16,7 +16,7 @@
     <div class="bg-gray-900/50 p-10 rounded-3xl shadow-2xl w-full max-w-lg border border-gray-800 backdrop-blur-sm">
         
         <div class="text-center mb-8">
-            <h2 class="text-3xl font-bold text-[#0033CC]">Créer un Compte</h2>
+            <h2 class="text-3xl font-bold text-[#FFD700]">Créer un Compte</h2>
             <p class="text-gray-500 mt-2 text-sm">Rejoignez la communauté Affican Digital dès aujourd'hui.</p>
         </div>
 
