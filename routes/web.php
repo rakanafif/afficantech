@@ -57,3 +57,4 @@ Route::get('/force-build', function() {
     Artisan::call('migrate', ['--force' => true]);
     return "🏆 تم بناء القاعدة بنجاح!";
 });
+Route::post('/login', [AuthController::class, 'login'])->name('login.post');
