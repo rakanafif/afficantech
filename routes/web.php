@@ -42,7 +42,8 @@ Route::get('/register', function () {
 Route::get('/vendor/dashboard', function () {
     set_my_locale();
     return view('vendor.dashboard');
-}); // حذفنا كلمة middleware('auth') مؤقتاً
+});
+
 
 Route::get('/vendor/dashboard', function () {
     set_my_locale();
@@ -73,7 +74,7 @@ Route::post('/login', [AuthController::class, 'login'])->name('login.post');
 Route::get('/vendor/books/create', function () {
     set_my_locale();
     return view('vendor.books.create');
-})->middleware('auth')->name('books.create');
+})->name('books.create');
 
 // مسار استقبال بيانات الكتاب وحفظها (سنبرمجه لاحقاً)
 Route::post('/vendor/books/store', function () {
