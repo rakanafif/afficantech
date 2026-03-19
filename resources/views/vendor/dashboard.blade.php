@@ -50,12 +50,10 @@
                 <h2 class="text-xl font-bold mb-2">{{ __('messages.upload_creative') }}</h2>
                 <p class="text-gray-400 text-sm mb-6 max-w-md mx-auto">{{ __('messages.upload_desc') }}</p>
                 
-                <button class="bg-[#FFD700] text-black font-black py-3 px-8 rounded-full hover:scale-105 transition shadow-lg">
-                    {{ __('messages.new_book') }}
-                </button>
-            </section>
-        </main>
-    </div>
+                <a href="{{ route('books.create') }}" class="inline-block bg-[#FFB700] text-black font-black py-4 px-10 rounded-full hover:scale-105 transition shadow-lg">
+    {{ __('messages.new_book') }}
+                </a>
+                
 
 </body>
 </html>
