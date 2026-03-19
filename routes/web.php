@@ -39,15 +39,8 @@ Route::get('/register', function () {
 
 Route::get('/vendor/dashboard', function () {
     set_my_locale();
-    Route::get('/vendor/dashboard', function () {
-    set_my_locale();
     return view('vendor.dashboard');
-});
-
-Route::get('/vendor/dashboard', function () {
-    set_my_locale();
-    return view('vendor.dashboard');
-}); // ->middleware('auth'); لحين إصلاح الدخول
+})->middleware('auth');
 
 Route::get('/lang/{locale}', function ($locale) {
     if (in_array($locale, ['ar', 'fr', 'en'])) {
