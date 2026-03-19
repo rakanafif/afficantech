@@ -10,10 +10,8 @@ use App\Http\Controllers\AuthController;
 use Illuminate\Support\Facades\URL; // أضف هذا السطر
 
 // --- كود الأمان الجديد لإخفاء رسالة التحذير ---
-if (config('app.env') !== 'local') {
-    URL::forceScheme('https');
-}
-// ------------------------------------------
+\Illuminate\Support\Facades\URL::forceScheme('https');
+
 
 function set_my_locale() {
     if (Session::has('locale')) {
@@ -41,16 +39,16 @@ Route::get('/register', function () {
 
 Route::get('/vendor/dashboard', function () {
     set_my_locale();
+    Route::get('/vendor/dashboard', function () {
+    set_my_locale();
     return view('vendor.dashboard');
 });
-
 
 Route::get('/vendor/dashboard', function () {
     set_my_locale();
     return view('vendor.dashboard');
-}); // حذفنا كلمة middleware('auth') مؤقتاً
+}); // ->middleware('auth'); لحين إصلاح الدخول
 
-// 5. تغيير اللغة (المحرك)
 Route::get('/lang/{locale}', function ($locale) {
     if (in_array($locale, ['ar', 'fr', 'en'])) {
         Session::put('locale', $locale);
