@@ -12,6 +12,9 @@
         .bg-golden-yellow { background-color: #FFD700; }
         .text-electric-blue { color: #0047FF; }
         .glow-blue { text-shadow: 0 0 15px rgba(0, 71, 255, 0.5); }
+        .media-container { position: relative; width: 100%; height: 200px; overflow: hidden; border-radius: 1.5rem; margin-bottom: 1.5rem; }
+        .media-container img, .media-container video { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease; }
+        .group:hover .media-container img, .group:hover .media-container video { transform: scale(1.1); }
     </style>
 </head>
 <body class="min-h-screen">
@@ -25,7 +28,7 @@
             <div class="hidden md:flex items-center space-x-8 rtl:space-x-reverse">
                 <a href="#services" class="text-gray-400 hover:text-golden-yellow">خدماتي</a>
                 <a href="#library" class="text-gray-400 hover:text-golden-yellow">المكتبة</a>
-                <div class="flex items-center space-x-2 border-l border-gray-800 pl-4 ml-4">
+                <div class="flex items-center space-x-2 border-l border-gray-800 px-4">
                     <a href="/lang/ar" class="{{ app()->getLocale() == 'ar' ? 'text-golden-yellow' : 'text-gray-500' }}">AR</a>
                     <a href="/lang/fr" class="{{ app()->getLocale() == 'fr' ? 'text-golden-yellow' : 'text-gray-500' }}">FR</a>
                 </div>
@@ -36,7 +39,7 @@
         </div>
     </nav>
 
-    <header class="py-24 text-center px-4 relative overflow-hidden">
+    <header class="py-24 text-center px-4 relative">
         <div class="relative z-10">
             <h1 class="text-5xl md:text-7xl font-black mb-6 leading-tight">
                 <span class="text-electric-blue glow-blue">{{ __('messages.welcome') }}</span>
@@ -58,29 +61,17 @@
     <section id="services" class="py-20 bg-[#050505]">
         <div class="max-w-7xl mx-auto px-6">
             <h2 class="text-4xl font-bold text-center mb-16 text-white">حلول <span class="text-golden-yellow">Affican Digital</span></h2>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <div class="p-8 bg-gray-900/50 rounded-3xl border border-gray-800 hover:border-golden-yellow transition group">
-                    <div class="text-4xl mb-6 group-hover:scale-110 transition">🚀</div>
-                    <h3 class="text-2xl font-bold mb-4">التسويق الإلكتروني</h3>
-                    <p class="text-gray-400 text-sm leading-relaxed">إدارة حملات السوشيال ميديا الإعلانية، بناء الهوية الرقمية، وتحليل البيانات لرفع المبيعات.</p>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
+                
+                <div class="p-4 bg-gray-900/40 rounded-[2rem] border border-gray-800 hover:border-golden-yellow transition-all group">
+                    <div class="media-container">
+                        <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=800&q=80" alt="Marketing">
+                    </div>
+                    <div class="px-4 pb-6">
+                        <h3 class="text-2xl font-bold mb-3">التسويق الإلكتروني</h3>
+                        <p class="text-gray-400 text-sm leading-relaxed">إدارة شاملة للسوشيال ميديا وحملات إعلانية ذكية تضمن لك الانتشار والبيع.</p>
+                    </div>
                 </div>
-                <div class="p-8 bg-gray-900/50 rounded-3xl border border-gray-800 hover:border-electric-blue transition group">
-                    <div class="text-4xl mb-6 group-hover:scale-110 transition">💻</div>
-                    <h3 class="text-2xl font-bold mb-4">البرمجة والتطوير</h3>
-                    <p class="text-gray-400 text-sm leading-relaxed">بناء المواقع والمنصات المتطورة باستخدام أحدث التقنيات لضمان السرعة والأمان.</p>
-                </div>
-                <div class="p-8 bg-gray-900/50 rounded-3xl border border-gray-800 hover:border-purple-500 transition group">
-                    <div class="text-4xl mb-6 group-hover:scale-110 transition">🤖</div>
-                    <h3 class="text-2xl font-bold mb-4">الذكاء الاصطناعي</h3>
-                    <p class="text-gray-400 text-sm leading-relaxed">دمج حلول الذكاء الاصطناعي وأتمتة المهام لزيادة إنتاجية أعمالك وتطويرها.</p>
-                </div>
-            </div>
-        </div>
-    </section>
 
-    <footer class="py-10 text-center border-t border-gray-900 mt-20 text-gray-500">
-        <p>&copy; 2026 <span class="text-electric-blue">Affican Digital</span>. Luxury Excellence.</p>
-    </footer>
-
-</body>
-</html>
+                <div class="p-4 bg-gray-
