@@ -22,10 +22,10 @@
         <div class="max-w-7xl mx-auto flex justify-between items-center">
             <div class="text-2xl font-black italic"><span class="text-golden">Affican</span> <span class="glow-blue">Digital</span></div>
             <div class="flex items-center space-x-4 space-x-reverse">
-                <div class="flex space-x-2 space-x-reverse border-x border-gray-800 px-4">
-                    <a href="/lang/en" class="text-xs text-gray-500 hover:text-golden">EN</a>
-                    <a href="/lang/ar" class="text-xs text-golden font-bold">AR</a>
-                    <a href="/lang/fr" class="text-xs text-gray-500 hover:text-golden">FR</a>
+                <div class="flex space-x-2 rtl:space-x-reverse border-x border-gray-800 px-4">
+    <a href="/lang/en" class="text-xs {{ app()->getLocale() == 'en' ? 'text-golden font-bold' : 'text-gray-500 hover:text-golden' }}">EN</a>
+    <a href="/lang/ar" class="text-xs {{ app()->getLocale() == 'ar' ? 'text-golden font-bold' : 'text-gray-500 hover:text-golden' }}">AR</a>
+    <a href="/lang/fr" class="text-xs {{ app()->getLocale() == 'fr' ? 'text-golden font-bold' : 'text-gray-500 hover:text-golden' }}">FR</a>
                 </div>
                 <a href="/login" class="text-gray-400 text-xs hover:text-white">دخول</a>
                 <a href="/register" class="bg-golden text-black px-5 py-2 rounded-full text-xs font-bold">انضم إلينا</a>
