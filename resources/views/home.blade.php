@@ -52,42 +52,45 @@
             </div>
         </div>
     </header>
-
     <section id="portfolio" class="py-24 px-6 bg-[#030303]">
         <div class="max-w-7xl mx-auto">
             <h2 class="text-4xl font-black text-center mb-20 italic">إبداعات <span class="text-golden font-bold">Affican Digital</span></h2>
             
             <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
-                <div class="card-glass p-5 rounded-[2.5rem] group">
+                <a href="/register" class="card-glass p-5 rounded-[2.5rem] group block text-right">
                     <div class="h-64 rounded-[2rem] overflow-hidden mb-6">
                         <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=600&auto=format&fit=crop" class="w-full h-full object-cover group-hover:scale-110 transition duration-700">
                     </div>
-                    <h3 class="text-2xl font-bold px-2 mb-3">التسويق الرقمي</h3>
+                    <h3 class="text-2xl font-bold px-2 mb-3 text-white">التسويق الرقمي</h3>
                     <p class="text-gray-500 text-sm px-2 pb-4 leading-relaxed">إدارة حملات إعلانية ذكية واستراتيجيات انتشار عالمية لعلامتك التجارية.</p>
-                </div>
+                    <div class="px-2 pb-2">
+                        <span class="text-golden text-sm font-bold flex items-center gap-2 group-hover:gap-4 transition-all">اطلب الخدمة <span class="rtl:rotate-180">→</span></span>
+                    </div>
+                </a>
 
-                <div class="card-glass p-5 rounded-[2.5rem] group text-center">
+                <a href="/register" class="card-glass p-5 rounded-[2.5rem] group block text-center">
                     <div class="h-64 rounded-[2rem] bg-black flex items-center justify-center mb-6 border border-gray-800">
                         <span class="text-7xl group-hover:scale-110 transition duration-700">💻</span>
                     </div>
-                    <h3 class="text-2xl font-bold mb-3">برمجة الأنظمة</h3>
+                    <h3 class="text-2xl font-bold mb-3 text-white">برمجة الأنظمة</h3>
                     <p class="text-gray-500 text-sm px-2 pb-4 leading-relaxed">تطوير منصات ومواقع متطورة (مثل PropelAI) بأحدث التقنيات البرمجية.</p>
-                </div>
+                    <div class="px-2 pb-2 flex justify-center">
+                        <span class="text-[#0047FF] text-sm font-bold flex items-center gap-2 group-hover:gap-4 transition-all">تفاصيل أكثر <span class="rtl:rotate-180">→</span></span>
+                    </div>
+                </a>
 
-                <div class="card-glass p-5 rounded-[2.5rem] group text-center">
+                <a href="/register" class="card-glass p-5 rounded-[2.5rem] group block text-center">
                     <div class="h-64 rounded-[2rem] bg-black flex items-center justify-center mb-6 border border-gray-800">
                         <span class="text-7xl group-hover:scale-110 transition duration-700">🤖</span>
                     </div>
-                    <h3 class="text-2xl font-bold mb-3">الذكاء الاصطناعي</h3>
+                    <h3 class="text-2xl font-bold mb-3 text-white">الذكاء الاصطناعي</h3>
                     <p class="text-gray-400 text-sm px-2 pb-4 leading-relaxed">أتمتة ذكية وحلول AI مبتكرة لرفع كفاءة أعمالك وضمان مستقبلك الرقمي.</p>
-                </div>
+                    <div class="px-2 pb-2 flex justify-center">
+                        <span class="text-purple-500 text-sm font-bold flex items-center gap-2 group-hover:gap-4 transition-all">اكتشف الحلول <span class="rtl:rotate-180">→</span></span>
+                    </div>
+                </a>
             </div>
         </div>
     </section>
 
-    <footer class="py-12 text-center text-gray-700 border-t border-gray-900 mt-20">
-        <p>&copy; 2026 <span class="text-[#0047FF]">Affican Digital</span>. كل الحقوق محفوظة.</p>
-    </footer>
-
-</body>
-</html>
+    
