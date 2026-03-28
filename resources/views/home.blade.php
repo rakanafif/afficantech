@@ -1,67 +1,51 @@
-<!DOCTYPE html>
-<html lang="{{ app()->getLocale() }}" dir="{{ app()->getLocale() == 'ar' ? 'rtl' : 'ltr' }}">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Affican Digital - Luxury Edition</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&family=Poppins:wght@400;900&display=swap');
-        body { font-family: 'Poppins', 'Cairo', sans-serif; background-color: #000000; color: white; }
-        .text-electric-blue { color: #0077FF; }
-        .text-golden-yellow { color: #FFD700; }
-        .bg-golden-yellow { background-color: #FFD700; }
-        .glow-blue { text-shadow: 0 0 10px rgba(0, 119, 255, 0.5); }
-    </style>
-</head>
-<body class="min-h-screen">
+<section id="services" class="py-20 bg-black">
+    <div class="max-w-7xl mx-auto px-6">
+        <div class="text-center mb-16">
+            <h2 class="text-4xl font-bold text-white mb-4">حلولنا <span class="text-[#FFD700]">الرقمية</span></h2>
+            <p class="text-gray-400">نجمع بين عبقرية الأكواد واستراتيجيات التسويق لنصنع أثراً حقيقياً.</p>
+        </div>
 
-    <nav class="bg-black border-b border-gray-900 p-6 shadow-2xl">
-        <div class="container mx-auto flex justify-between items-center">
-            <div class="text-3xl font-black tracking-tighter">
-                <span class="text-golden-yellow">Affican</span> <span class="text-electric-blue glow-blue">Digital</span>
-            </div>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
             
-            <div class="flex items-center space-x-4">
-                <div class="flex items-center space-x-2 bg-gray-900 px-3 py-1 rounded-full text-xs font-bold border border-gray-800">
-                    <a href="/lang/en" class="{{ app()->getLocale() == 'en' ? 'text-golden-yellow' : 'text-gray-500' }}">EN</a>
-                    <span class="text-gray-700">|</span>
-                    <a href="/lang/fr" class="{{ app()->getLocale() == 'fr' ? 'text-golden-yellow' : 'text-gray-500' }}">FR</a>
-                    <span class="text-gray-700">|</span>
-                    <a href="/lang/ar" class="{{ app()->getLocale() == 'ar' ? 'text-golden-yellow' : 'text-gray-500' }}">AR</a>
+            <div class="bg-gray-900/50 p-8 rounded-3xl border border-gray-800 hover:border-[#FFD700] transition-all duration-300 group">
+                <div class="w-16 h-16 bg-[#FFD700]/10 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition">
+                    <span class="text-3xl">🚀</span>
                 </div>
-                <a href="/login" class="bg-golden-yellow text-black font-black py-2 px-6 rounded-full text-sm">
-                    {{ __('messages.login') }}
-                </a>
+                <h3 class="text-2xl font-bold text-white mb-4">التسويق عبر السوشيال ميديا</h3>
+                <ul class="text-gray-400 space-y-2 text-sm">
+                    <li>• إدارة الحملات الإعلانية الممولة (FB, IG, TikTok).</li>
+                    <li>• بناء استراتيجيات المحتوى الإبداعي.</li>
+                    <li>• تحليل البيانات ورفع معدل التحويل (ROI).</li>
+                    <li>• زيادة الوعي بالعلامة التجارية والوصول للجمهور المستهدف.</li>
+                </ul>
             </div>
-        </div>
-    </nav>
 
-    <header class="py-32 text-center px-4 relative overflow-hidden">
-        <div class="relative z-10">
-            <h1 class="text-5xl md:text-7xl font-black mb-8 leading-tight">
-                <span class="text-electric-blue glow-blue">{{ __('messages.welcome') }}</span>
-            </h1>
-            <p class="text-xl mb-12 text-gray-400 max-w-2xl mx-auto font-light leading-relaxed">
-                {{ __('messages.discover') }}
-            </p>
-            
-            <div class="flex flex-col md:flex-row justify-center gap-6">
-                <a href="#" class="bg-golden-yellow text-black font-black py-4 px-12 rounded-full text-xl shadow-lg">
-                    {{ __('messages.buy_now') }}
-                </a>
-                
-                <a href="/vendor/dashboard" class="border-2 border-electric-blue text-electric-blue font-bold py-4 px-12 rounded-full text-xl hover:bg-electric-blue hover:text-white transition-all">
-                    {{ __('messages.be_vender') }}
-                </a>
+            <div class="bg-gray-900/50 p-8 rounded-3xl border border-gray-800 hover:border-[#0047FF] transition-all duration-300 group">
+                <div class="w-16 h-16 bg-[#0047FF]/10 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition">
+                    <span class="text-3xl">💻</span>
+                </div>
+                <h3 class="text-2xl font-bold text-white mb-4">برمجة وتطوير الأنظمة</h3>
+                <ul class="text-gray-400 space-y-2 text-sm">
+                    <li>• تطوير مواقع الويب وتطبيقات الهاتف (Full-Stack).</li>
+                    <li>• بناء المنصات التعليمية والمتاجر الإلكترونية.</li>
+                    <li>• برمجة لوحات التحكم (Dashboards) المخصصة.</li>
+                    <li>• تحسين أداء المواقع وسرعة الاستجابة.</li>
+                </ul>
             </div>
+
+            <div class="bg-gray-900/50 p-8 rounded-3xl border border-gray-800 hover:border-purple-500 transition-all duration-300 group">
+                <div class="w-16 h-16 bg-purple-500/10 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition">
+                    <span class="text-3xl">🤖</span>
+                </div>
+                <h3 class="text-2xl font-bold text-white mb-4">حلول الذكاء الاصطناعي</h3>
+                <ul class="text-gray-400 space-y-2 text-sm">
+                    <li>• دمج تقنيات GPT و LLMs في المواقع.</li>
+                    <li>• بناء الـ Chatbots الذكية لخدمة العملاء.</li>
+                    <li>• أتمتة المهام المتكررة باستخدام الذكاء الاصطناعي.</li>
+                    <li>• تحليل البيانات الضخمة لاستخراج التوقعات المستقبلية.</li>
+                </ul>
+            </div>
+
         </div>
-    </header>
-
-    <footer class="py-10 text-center border-t border-gray-900 mt-20 text-gray-600 text-sm">
-        <p>&copy; 2026 <span class="text-electric-blue">Affican Digital</span>. Luxury Excellence.</p>
-    </footer>
-
-</body>
-</html>
-
+    </div>
+</section>
