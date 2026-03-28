@@ -36,12 +36,13 @@
     <header class="py-24 text-center px-6 relative">
         <div class="relative z-10">
             <h1 class="text-5xl md:text-7xl font-black mb-6 leading-tight">
-                أهلاً بك في <br>
-                <span class="glow-blue uppercase tracking-tighter">Affican Digital</span>
-            </h1>
-            <p class="text-gray-400 max-w-2xl mx-auto text-lg md:text-xl mb-12">
-                نبتكر الحلول الرقمية المتطورة ونصيغ مستقبلك الإبداعي باحترافية عالمية.
-            </p>
+    {{ __('messages.welcome') }} <br>
+    <span class="glow-blue uppercase tracking-tighter">Affican Digital</span>
+</h1>
+<p class="text-gray-400 max-w-2xl mx-auto text-lg md:text-xl mb-12">
+    {{ __('messages.discover') }}
+</p>
+
             <div class="flex justify-center gap-5">
                 <a href="#portfolio" class="bg-golden text-black font-black py-4 px-12 rounded-full text-lg shadow-lg">استكشف خدماتي</a>
             </div>
