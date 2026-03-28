@@ -6,10 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Book extends Model
 {
-    // السماح بحفظ هذه البيانات في قاعدة البيانات
-    protected $fillable = ['title', 'description', 'price', 'cover_image', 'user_id'];
+    protected $guarded = []; // هذه العلامة تفتح الأبواب لكل الحقول (حل سريع وآمن للتطوير)
 
-    // ربط الكتاب بصاحبه (المؤلف)
     public function user()
     {
         return $this->belongsTo(User::class);
