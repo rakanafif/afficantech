@@ -28,22 +28,24 @@ class AuthController extends Controller {
         }
         return back()->with('error', 'بيانات الدخول غير صحيحة');
     }
-
-    // 3. المحرك الجديد: حفظ كتاب "نبض الحقيقة"
+    // 3. المحرك العالمي: حفظ ونشر الكتب الرقمية
     public function store_book(Request $request) {
         $path = null;
+        
+        // معالجة غلاف الكتاب إذا وجد
         if ($request->hasFile('cover')) {
             $path = $request->file('cover')->store('covers', 'public');
         }
 
-        Book::create([
-            'title'       => $request->title,
-            'description' => $request->description,
-            'price'       => $request->price ?? 0,
+        // حفظ بيانات الكتاب كما أدخلتها أنت في النموذج
+        \App\Models\Book::create([
+            'title'       => $request->title,       // سيأخذ "الهاوية" أو أي عنوان آخر
+            'description' => $request->description, // سيأخذ الوصف الذي تضعه
+            'price'       => $request->price ?? 0,  // السعر الذي تحدده
             'cover_path'  => $path,
-            'user_id'     => Auth::id() ?? 1
+            'user_id'     => Auth::id() ?? 1,       // ربط الكتاب بحسابك كـ مؤلف
         ]);
 
-        return redirect('/vendor/dashboard')->with('success', 'تم نشر كتابك بنجاح!');
+        // العودة للوحة التحكم مع رسالة نجاح عامة
+        return redirect('/vendor/dashboard')->with('success', 'تم نشر عملك الإبداعي بنجاح!');
     }
-}
