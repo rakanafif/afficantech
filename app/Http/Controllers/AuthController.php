@@ -5,7 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Book;
-use Illuminate\Support\Facades\{Hash, Auth};
+use App\Models\Service;
+use Illuminate\Support\Facades\{Hash, Auth, Storage};
 
 class AuthController extends Controller {
 
@@ -29,7 +30,7 @@ class AuthController extends Controller {
         return back()->with('error', 'بيانات الدخول غير صحيحة');
     }
 
-    // 3. المحرك العالمي لحفظ أي كتاب
+    // 3. محرك رفع الكتب (الهاوية وغيرها)
     public function store_book(Request $request) {
         $path = null;
         if ($request->hasFile('cover')) {
@@ -44,6 +45,34 @@ class AuthController extends Controller {
             'user_id'     => Auth::id(),
         ]);
 
-        return redirect('/vendor/dashboard')->with('success', 'تم النشر بنجاح');
+        return redirect('/vendor/dashboard')->with('success', 'تم نشر الكتاب بنجاح');
+    }
+
+    // 4. محرك رفع الخدمات (تسويق، برمجة، ذكاء اصطناعي) مع الفيديو والصور
+    public function store_service(Request $request) {
+        $path = null;
+        $type = 'image'; 
+
+        if ($request->hasFile('media')) {
+            $file = $request->file('media');
+            $extension = strtolower($file->getClientOriginalExtension());
+            
+            // تحديد إذا كان الملف فيديو أو صورة
+            if (in_array($extension, ['mp4', 'mov', 'avi', 'wmv'])) {
+                $type = 'video';
+            }
+
+            $path = $file->store('services', 'public');
+        }
+
+        Service::create([
+            'title'       => $request->title,
+            'description' => $request->description,
+            'media_path'  => $path,
+            'media_type'  => $type,
+            'user_id'     => Auth::id(),
+        ]);
+
+        return redirect('/vendor/dashboard')->with('success', 'تم إضافة الخدمة والوسائط بنجاح');
     }
 }
