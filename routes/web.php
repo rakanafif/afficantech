@@ -83,5 +83,6 @@ Route::get('/setup-storage', function () {
     \Illuminate\Support\Facades\Artisan::call('storage:link');
     return '✅ تم تنظيف النظام وربط مسار الصور بنجاح! يمكنك الآن رؤية أغلفة الكتب.';
 });
+Route::post('/services/store', [App\Http\Controllers\AuthController::class, 'store_service'])->name('services.store');
 
    
