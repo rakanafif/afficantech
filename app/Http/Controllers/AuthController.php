@@ -6,19 +6,33 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Book;
 use App\Models\Service;
-use Illuminate\Support\Facades\{Hash, Auth, Storage};
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 
 class AuthController extends Controller {
 
-    // 1. وظيفة التسجيل
+    // 1. وظيفة التسجيل (المحرك الحقيقي والآمن)
     public function register(Request $request) {
+        // التحقق من صحة البيانات (منع الحسابات الوهمية أو المكررة)
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'email' => 'required|string|email|max:255|unique:users',
+            'password' => 'required|string|min:8',
+        ]);
+
+        // إنشاء المستخدم في قاعدة البيانات وتشفير كلمة المرور
         $user = User::create([
             'name'     => $request->name,
             'email'    => $request->email,
             'password' => Hash::make($request->password),
         ]);
+
+        // تسجيل الدخول فوراً للمنصة بعد إنشاء الحساب
         Auth::login($user);
-        return redirect('/vendor/dashboard');
+
+        // تحويل المستخدم إلى لوحة التحكم الخاصة به
+        return redirect('/vendor/dashboard')->with('success', 'تم إنشاء حسابك بنجاح!');
     }
 
     // 2. وظيفة الدخول
@@ -30,7 +44,7 @@ class AuthController extends Controller {
         return back()->with('error', 'بيانات الدخول غير صحيحة');
     }
 
-    // 3. محرك رفع الكتب (الهاوية وغيرها)
+    // 3. محرك رفع الكتب
     public function store_book(Request $request) {
         $path = null;
         if ($request->hasFile('cover')) {
@@ -48,7 +62,7 @@ class AuthController extends Controller {
         return redirect('/vendor/dashboard')->with('success', 'تم نشر الكتاب بنجاح');
     }
 
-    // 4. محرك رفع الخدمات (تسويق، برمجة، ذكاء اصطناعي) مع الفيديو والصور
+    // 4. محرك رفع الخدمات مع الفيديو والصور
     public function store_service(Request $request) {
         $path = null;
         $type = 'image'; 
