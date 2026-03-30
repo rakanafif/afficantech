@@ -53,14 +53,31 @@
         <div class="max-w-7xl mx-auto">
             <h2 class="text-4xl font-black text-center mb-20 italic">إبداعات <span class="text-golden font-bold">Affican Digital</span></h2>
             
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
-                <div onclick="openModal('modal-1')" class="card-glass p-5 rounded-[2.5rem] group">
-                    <div class="h-64 rounded-[2rem] overflow-hidden mb-6">
-                        <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=600&auto=format&fit=crop" class="w-full h-full object-cover group-hover:scale-110 transition duration-700">
-                    </div>
-                    <h3 class="text-2xl font-bold px-2 mb-3">التسويق الرقمي</h3>
-                    <p class="text-gray-500 text-sm px-2 pb-2">اضغط هنا لمشاهدة التفاصيل والفيديو التوضيحي...</p>
-                </div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-10">
+    <div onclick="openModal('modal-1')" class="card-glass p-5 rounded-[2.5rem] group cursor-pointer">
+        <div class="h-64 rounded-[2rem] overflow-hidden mb-6">
+            <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=600&auto=format&fit=crop" class="w-full h-full object-cover group-hover:scale-110 transition duration-700">
+        </div>
+        <h3 class="text-2xl font-bold px-2 mb-3 text-white">التسويق الرقمي</h3>
+        <p class="text-gray-500 text-sm px-2 pb-2">اضغط هنا لمشاهدة التفاصيل والفيديو التوضيحي...</p>
+    </div>
+
+    <div onclick="openModal('modal-2')" class="card-glass p-5 rounded-[2.5rem] group text-center cursor-pointer">
+        <div class="h-64 rounded-[2rem] bg-black flex items-center justify-center mb-6 border border-gray-800">
+            <span class="text-7xl group-hover:scale-110 transition duration-700">💻</span>
+        </div>
+        <h3 class="text-2xl font-bold mb-3 text-white">برمجة الأنظمة</h3>
+        <p class="text-gray-500 text-sm px-2 pb-2">اضغط هنا لمشاهدة تفاصيل المنصات البرمجية...</p>
+    </div>
+
+    <div onclick="openModal('modal-3')" class="card-glass p-5 rounded-[2.5rem] group text-center cursor-pointer">
+        <div class="h-64 rounded-[2rem] bg-black flex items-center justify-center mb-6 border border-gray-800">
+            <span class="text-7xl group-hover:scale-110 transition duration-700">🤖</span>
+        </div>
+        <h3 class="text-2xl font-bold mb-3 text-white">الذكاء الاصطناعي</h3>
+        <p class="text-gray-400 text-sm px-2 pb-2">اضغط هنا لاستكشاف حلول الذكاء الاصطناعي...</p>
+    </div>
+</div>
 
                 <div onclick="openModal('modal-2')" class="card-glass p-5 rounded-[2.5rem] group text-center">
                     <div class="h-64 rounded-[2rem] bg-black flex items-center justify-center mb-6 border border-gray-800">
